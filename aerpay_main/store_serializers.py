@@ -20,13 +20,6 @@ class StoreRegisterSrlzr(serializers.ModelSerializer):
                   'description', 'address', 'address_latitude', 'address_longitude', 
                   'refered_by_store_referal_code',)
 
-class StoreUsrGetSrlzr(serializers.ModelSerializer):
-    class Meta:
-        model = Store
-        fields = ('id', 'email', 'help_desk_email',
-                  'name', 'phone_number', 'image', 'address', 'address_latitude', 'address_longitude', 
-                  'description', 'no_of_ratings', 'rating')
-
 class StoreProductsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
@@ -124,6 +117,14 @@ class CategoryGetSrlzr(serializers.ModelSerializer):
         model = Category
         fields = ('id', 'name', 'image', 'products')
 
+class StoreUsrGetSrlzr(serializers.ModelSerializer):
+    categories = CategoryGetSrlzr(
+        many=True, read_only=True)
+    class Meta:
+        model = Store
+        fields = ('id', 'email', 'help_desk_email',
+                  'name', 'phone_number', 'image', 'address', 'address_latitude', 'address_longitude', 
+                  'description', 'no_of_ratings', 'rating', 'categories')
 
 
 class CategoryUpdateSrlzr(serializers.ModelSerializer):
