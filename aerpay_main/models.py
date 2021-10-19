@@ -98,7 +98,7 @@ class QuantityType(models.Model):
 
 class OrderTrackingStage(models.Model):
     order_tracking_stage_number = models.IntegerField()
-    order_tracking_stage_label = models.CharField(max_length=20, blank=True, null=True)
+    order_tracking_stage_label = models.CharField(max_length=100, blank=True, null=True)
 
 class Store(models.Model):
     # add a save mwthod to store the personal info here
@@ -292,7 +292,7 @@ class CartOrder(models.Model):
     is_online_payment_sent = models.BooleanField(default=False)
     is_save_cart = models.BooleanField(default=False)
     order_tracking_stage_number = models.IntegerField(default=0)
-    order_tracking_stage_label = models.CharField(max_length=50, blank=True, null=True)
+    order_tracking_stage_label = models.CharField(max_length=100, blank=True, null=True)
 
     # for all cases, if payment is successful, only then save the model, and take this to celery
 
